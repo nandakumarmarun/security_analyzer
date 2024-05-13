@@ -1,0 +1,183 @@
+<div>
+  <h2 id="page-heading" data-cy="UserAttributesHeading">
+    <span jhiTranslate="myApp.userAttributes.home.title">User Attributes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="myApp.userAttributes.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-user-attributes"
+        [routerLink]="['/user-attributes/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="myApp.userAttributes.home.createLabel">Create a new User Attributes</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (userAttributes?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="myApp.userAttributes.home.notFound">No User Attributes found</span>
+    </div>
+  }
+
+  @if (userAttributes && userAttributes.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="myApp.userAttributes.id">Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="name">
+              <div class="d-flex">
+                <span jhiTranslate="myApp.userAttributes.name">Name</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="phone">
+              <div class="d-flex">
+                <span jhiTranslate="myApp.userAttributes.phone">Phone</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="email">
+              <div class="d-flex">
+                <span jhiTranslate="myApp.userAttributes.email">Email</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="address">
+              <div class="d-flex">
+                <span jhiTranslate="myApp.userAttributes.address">Address</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="country.name">
+              <div class="d-flex">
+                <span jhiTranslate="myApp.userAttributes.country">Country</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="state.name">
+              <div class="d-flex">
+                <span jhiTranslate="myApp.userAttributes.state">State</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="district.name">
+              <div class="d-flex">
+                <span jhiTranslate="myApp.userAttributes.district">District</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="city.name">
+              <div class="d-flex">
+                <span jhiTranslate="myApp.userAttributes.city">City</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="location.name">
+              <div class="d-flex">
+                <span jhiTranslate="myApp.userAttributes.location">Location</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (userAttributes of userAttributes; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/user-attributes', userAttributes.id, 'view']">{{ userAttributes.id }}</a>
+              </td>
+              <td>{{ userAttributes.name }}</td>
+              <td>{{ userAttributes.phone }}</td>
+              <td>{{ userAttributes.email }}</td>
+              <td>{{ userAttributes.address }}</td>
+              <td>
+                @if (userAttributes.country) {
+                  <div>
+                    <a [routerLink]="['/country', userAttributes.country.id, 'view']">{{ userAttributes.country.name }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (userAttributes.state) {
+                  <div>
+                    <a [routerLink]="['/state', userAttributes.state.id, 'view']">{{ userAttributes.state.name }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (userAttributes.district) {
+                  <div>
+                    <a [routerLink]="['/district', userAttributes.district.id, 'view']">{{ userAttributes.district.name }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (userAttributes.city) {
+                  <div>
+                    <a [routerLink]="['/city', userAttributes.city.id, 'view']">{{ userAttributes.city.name }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (userAttributes.location) {
+                  <div>
+                    <a [routerLink]="['/location', userAttributes.location.id, 'view']">{{ userAttributes.location.name }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/user-attributes', userAttributes.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/user-attributes', userAttributes.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(userAttributes)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

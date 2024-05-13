@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (state) {
+      <div>
+        <h2 data-cy="stateDetailsHeading"><span jhiTranslate="myApp.state.detail.title">State</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ state.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="myApp.state.name">Name</span></dt>
+          <dd>
+            <span>{{ state.name }}</span>
+          </dd>
+          <dt><span jhiTranslate="myApp.state.country">Country</span></dt>
+          <dd>
+            @if (state.country) {
+              <div>
+                <a [routerLink]="['/country', state.country.id, 'view']">{{ state.country.name }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/state', state.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

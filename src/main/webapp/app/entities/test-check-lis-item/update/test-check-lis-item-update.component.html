@@ -1,0 +1,79 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-test-check-lis-item-heading"
+        data-cy="TestCheckLisItemCreateUpdateHeading"
+        jhiTranslate="myApp.testCheckLisItem.home.createOrEditLabel"
+      >
+        Create or edit a Test Check Lis Item
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="myApp.testCheckLisItem.marked" for="field_marked">Marked</label>
+          <input type="checkbox" class="form-check" name="marked" id="field_marked" data-cy="marked" formControlName="marked" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="myApp.testCheckLisItem.checklistitem" for="field_checklistitem">Checklistitem</label>
+          <select
+            class="form-control"
+            id="field_checklistitem"
+            data-cy="checklistitem"
+            name="checklistitem"
+            formControlName="checklistitem"
+            [compareWith]="compareCheckLisItem"
+          >
+            <option [ngValue]="null"></option>
+            @for (checkLisItemOption of checklistitemsCollection; track $index) {
+              <option [ngValue]="checkLisItemOption">{{ checkLisItemOption.name }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="myApp.testCheckLisItem.testCheckList" for="field_testCheckList">Test Check List</label>
+          <select
+            class="form-control"
+            id="field_testCheckList"
+            data-cy="testCheckList"
+            name="testCheckList"
+            formControlName="testCheckList"
+            [compareWith]="compareTestCheckList"
+          >
+            <option [ngValue]="null"></option>
+            @for (testCheckListOption of testCheckListsSharedCollection; track $index) {
+              <option [ngValue]="testCheckListOption">{{ testCheckListOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

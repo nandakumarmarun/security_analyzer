@@ -1,0 +1,31 @@
+{
+  "annotations": {
+    "changelogDate": "20240513081653"
+  },
+  "applications": ["myApp"],
+  "fields": [
+    {
+      "fieldName": "marked",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "TestCheckLisItem",
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "checkLisItem",
+      "relationshipName": "checklistitem",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "testCheckList",
+      "otherEntityRelationshipName": "testCheckLisItem",
+      "relationshipName": "testCheckList",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

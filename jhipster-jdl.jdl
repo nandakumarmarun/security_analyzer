@@ -1,0 +1,103 @@
+
+application {
+  config {
+    baseName myApp
+    applicationType monolith
+    packageName com.secitriy.analyzer
+    authenticationType jwt
+    prodDatabaseType postgresql
+    clientFramework angularX
+  }
+  entities *
+}
+
+entity UserAttributes {
+    id Long,
+    name String required minlength(1) maxlength(255),    
+	phone String
+    email String 
+    address String
+}
+
+entity ApplicationUser {
+name String
+}
+
+entity Country{
+name String
+}
+
+entity District{
+name String
+}
+
+entity State{
+name String
+}
+
+entity City{
+name String
+}
+
+entity Location{
+name String
+}
+
+entity  SecurityTest{
+TestStatus  String 
+TestScore Double 
+SecurityLevel SecurityLevel
+}
+
+entity TestCheckList{
+}
+
+entity TestCheckLisItem{
+Marked Boolean
+}
+
+
+
+entity  CheckList{
+name String
+}
+
+entity  CheckLisItem{
+name String
+value Double
+}
+
+enum SecurityLevel{
+HIGH , MODERATE , LOW 
+}
+
+
+relationship OneToMany {
+ Country to State{country(name)}
+ Country to City{country(name)}
+ State to Location{state(name)}
+ State to District{state(name)}
+ City to Location{city(name)}
+ District to Location{district(name)}
+ SecurityTest to TestCheckList
+ TestCheckList to TestCheckLisItem
+ CheckList to CheckLisItem
+ ApplicationUser to SecurityTest
+}
+
+
+relationship OneToOne {
+  ApplicationUser{internalUser(login)} to @OnDelete("CASCADE") @Id User with builtInEntity
+  ApplicationUser{userAttributes(name)} to UserAttributes 
+  UserAttributes{country(name)} to Country
+  UserAttributes{state(name)} to State
+  UserAttributes{district(name)} to District
+  UserAttributes{city(name)} to City
+  UserAttributes{location(name)} to Location 
+  TestCheckLisItem{checklistitem(name)} to CheckLisItem
+  TestCheckList to CheckList
+}
+
+
+service * with serviceClass
+service * with serviceImpl

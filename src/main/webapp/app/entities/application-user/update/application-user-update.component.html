@@ -1,0 +1,79 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-application-user-heading"
+        data-cy="ApplicationUserCreateUpdateHeading"
+        jhiTranslate="myApp.applicationUser.home.createOrEditLabel"
+      >
+        Create or edit a Application User
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="myApp.applicationUser.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="myApp.applicationUser.internalUser" for="field_internalUser">Internal User</label>
+          <select
+            class="form-control"
+            id="field_internalUser"
+            data-cy="internalUser"
+            name="internalUser"
+            formControlName="internalUser"
+            [compareWith]="compareUser"
+          >
+            <option [ngValue]="null"></option>
+            @for (userOption of usersSharedCollection; track $index) {
+              <option [ngValue]="userOption">{{ userOption.login }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="myApp.applicationUser.userAttributes" for="field_userAttributes">User Attributes</label>
+          <select
+            class="form-control"
+            id="field_userAttributes"
+            data-cy="userAttributes"
+            name="userAttributes"
+            formControlName="userAttributes"
+            [compareWith]="compareUserAttributes"
+          >
+            <option [ngValue]="null"></option>
+            @for (userAttributesOption of userAttributesCollection; track $index) {
+              <option [ngValue]="userAttributesOption">{{ userAttributesOption.name }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+{
+  "myApp": {
+    "securityTest": {
+      "home": {
+        "title": "Security Tests",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Security Test",
+        "createOrEditLabel": "Create or edit a Security Test",
+        "notFound": "No Security Tests found"
+      },
+      "created": "A new Security Test is created with identifier {{ param }}",
+      "updated": "A Security Test is updated with identifier {{ param }}",
+      "deleted": "A Security Test is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Security Test {{ id }}?"
+      },
+      "detail": {
+        "title": "Security Test"
+      },
+      "id": "ID",
+      "testStatus": "Test Status",
+      "testScore": "Test Score",
+      "securityLevel": "Security Level",
+      "testCheckList": "Test Check List",
+      "applicationUser": "Application User"
+    }
+  }
+}

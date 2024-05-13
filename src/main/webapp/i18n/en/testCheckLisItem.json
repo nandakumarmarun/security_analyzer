@@ -1,0 +1,26 @@
+{
+  "myApp": {
+    "testCheckLisItem": {
+      "home": {
+        "title": "Test Check Lis Items",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Test Check Lis Item",
+        "createOrEditLabel": "Create or edit a Test Check Lis Item",
+        "notFound": "No Test Check Lis Items found"
+      },
+      "created": "A new Test Check Lis Item is created with identifier {{ param }}",
+      "updated": "A Test Check Lis Item is updated with identifier {{ param }}",
+      "deleted": "A Test Check Lis Item is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Test Check Lis Item {{ id }}?"
+      },
+      "detail": {
+        "title": "Test Check Lis Item"
+      },
+      "id": "ID",
+      "marked": "Marked",
+      "checklistitem": "Checklistitem",
+      "testCheckList": "Test Check List"
+    }
+  }
+}

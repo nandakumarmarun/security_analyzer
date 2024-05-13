@@ -1,0 +1,86 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (userAttributes) {
+      <div>
+        <h2 data-cy="userAttributesDetailsHeading"><span jhiTranslate="myApp.userAttributes.detail.title">User Attributes</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="myApp.userAttributes.id">Id</span></dt>
+          <dd>
+            <span>{{ userAttributes.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="myApp.userAttributes.name">Name</span></dt>
+          <dd>
+            <span>{{ userAttributes.name }}</span>
+          </dd>
+          <dt><span jhiTranslate="myApp.userAttributes.phone">Phone</span></dt>
+          <dd>
+            <span>{{ userAttributes.phone }}</span>
+          </dd>
+          <dt><span jhiTranslate="myApp.userAttributes.email">Email</span></dt>
+          <dd>
+            <span>{{ userAttributes.email }}</span>
+          </dd>
+          <dt><span jhiTranslate="myApp.userAttributes.address">Address</span></dt>
+          <dd>
+            <span>{{ userAttributes.address }}</span>
+          </dd>
+          <dt><span jhiTranslate="myApp.userAttributes.country">Country</span></dt>
+          <dd>
+            @if (userAttributes.country) {
+              <div>
+                <a [routerLink]="['/country', userAttributes.country.id, 'view']">{{ userAttributes.country.name }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="myApp.userAttributes.state">State</span></dt>
+          <dd>
+            @if (userAttributes.state) {
+              <div>
+                <a [routerLink]="['/state', userAttributes.state.id, 'view']">{{ userAttributes.state.name }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="myApp.userAttributes.district">District</span></dt>
+          <dd>
+            @if (userAttributes.district) {
+              <div>
+                <a [routerLink]="['/district', userAttributes.district.id, 'view']">{{ userAttributes.district.name }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="myApp.userAttributes.city">City</span></dt>
+          <dd>
+            @if (userAttributes.city) {
+              <div>
+                <a [routerLink]="['/city', userAttributes.city.id, 'view']">{{ userAttributes.city.name }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="myApp.userAttributes.location">Location</span></dt>
+          <dd>
+            @if (userAttributes.location) {
+              <div>
+                <a [routerLink]="['/location', userAttributes.location.id, 'view']">{{ userAttributes.location.name }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/user-attributes', userAttributes.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

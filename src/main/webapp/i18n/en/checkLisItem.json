@@ -1,0 +1,27 @@
+{
+  "myApp": {
+    "checkLisItem": {
+      "home": {
+        "title": "Check Lis Items",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Check Lis Item",
+        "createOrEditLabel": "Create or edit a Check Lis Item",
+        "notFound": "No Check Lis Items found"
+      },
+      "created": "A new Check Lis Item is created with identifier {{ param }}",
+      "updated": "A Check Lis Item is updated with identifier {{ param }}",
+      "deleted": "A Check Lis Item is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Check Lis Item {{ id }}?"
+      },
+      "detail": {
+        "title": "Check Lis Item"
+      },
+      "id": "ID",
+      "name": "Name",
+      "value": "Value",
+      "checkList": "Check List",
+      "testCheckLisItem": "Test Check Lis Item"
+    }
+  }
+}

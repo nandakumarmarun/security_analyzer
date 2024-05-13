@@ -1,0 +1,31 @@
+{
+  "annotations": {
+    "changelogDate": "20240513080953"
+  },
+  "applications": ["myApp"],
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Country",
+  "relationships": [
+    {
+      "otherEntityName": "state",
+      "otherEntityRelationshipName": "country",
+      "relationshipName": "state",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "city",
+      "otherEntityRelationshipName": "country",
+      "relationshipName": "city",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

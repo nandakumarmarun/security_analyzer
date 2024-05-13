@@ -1,0 +1,112 @@
+<div>
+  <h2 id="page-heading" data-cy="TestCheckListHeading">
+    <span jhiTranslate="myApp.testCheckList.home.title">Test Check Lists</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="myApp.testCheckList.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-test-check-list"
+        [routerLink]="['/test-check-list/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="myApp.testCheckList.home.createLabel">Create a new Test Check List</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (testCheckLists?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="myApp.testCheckList.home.notFound">No Test Check Lists found</span>
+    </div>
+  }
+
+  @if (testCheckLists && testCheckLists.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="checkList.id">
+              <div class="d-flex">
+                <span jhiTranslate="myApp.testCheckList.checkList">Check List</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="securityTest.id">
+              <div class="d-flex">
+                <span jhiTranslate="myApp.testCheckList.securityTest">Security Test</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (testCheckList of testCheckLists; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/test-check-list', testCheckList.id, 'view']">{{ testCheckList.id }}</a>
+              </td>
+              <td>
+                @if (testCheckList.checkList) {
+                  <div>
+                    <a [routerLink]="['/check-list', testCheckList.checkList.id, 'view']">{{ testCheckList.checkList.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (testCheckList.securityTest) {
+                  <div>
+                    <a [routerLink]="['/security-test', testCheckList.securityTest.id, 'view']">{{ testCheckList.securityTest.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/test-check-list', testCheckList.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/test-check-list', testCheckList.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(testCheckList)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

@@ -1,0 +1,33 @@
+{
+  "annotations": {
+    "changelogDate": "20240513081553"
+  },
+  "applications": ["myApp"],
+  "fields": [],
+  "name": "TestCheckList",
+  "relationships": [
+    {
+      "otherEntityName": "checkList",
+      "otherEntityRelationshipName": "testCheckList",
+      "relationshipName": "checkList",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "testCheckLisItem",
+      "otherEntityRelationshipName": "testCheckList",
+      "relationshipName": "testCheckLisItem",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "securityTest",
+      "otherEntityRelationshipName": "testCheckList",
+      "relationshipName": "securityTest",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

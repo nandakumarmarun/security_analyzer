@@ -1,0 +1,117 @@
+<div>
+  <h2 id="page-heading" data-cy="SecurityTestHeading">
+    <span jhiTranslate="myApp.securityTest.home.title">Security Tests</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="myApp.securityTest.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-security-test"
+        [routerLink]="['/security-test/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="myApp.securityTest.home.createLabel">Create a new Security Test</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (securityTests?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="myApp.securityTest.home.notFound">No Security Tests found</span>
+    </div>
+  }
+
+  @if (securityTests && securityTests.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="testStatus">
+              <div class="d-flex">
+                <span jhiTranslate="myApp.securityTest.testStatus">Test Status</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="testScore">
+              <div class="d-flex">
+                <span jhiTranslate="myApp.securityTest.testScore">Test Score</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="securityLevel">
+              <div class="d-flex">
+                <span jhiTranslate="myApp.securityTest.securityLevel">Security Level</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="applicationUser.id">
+              <div class="d-flex">
+                <span jhiTranslate="myApp.securityTest.applicationUser">Application User</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (securityTest of securityTests; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/security-test', securityTest.id, 'view']">{{ securityTest.id }}</a>
+              </td>
+              <td>{{ securityTest.testStatus }}</td>
+              <td>{{ securityTest.testScore }}</td>
+              <td jhiTranslate="{{ 'myApp.SecurityLevel.' + securityTest.securityLevel }}">{{ securityTest.securityLevel }}</td>
+              <td>
+                @if (securityTest.applicationUser) {
+                  <div>
+                    <a [routerLink]="['/application-user', securityTest.applicationUser.id, 'view']">{{
+                      securityTest.applicationUser.id
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/security-test', securityTest.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/security-test', securityTest.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(securityTest)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

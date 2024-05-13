@@ -1,0 +1,10 @@
+{
+  "myApp": {
+    "SecurityLevel": {
+      "null": "",
+      "HIGH": "HIGH",
+      "MODERATE": "MODERATE",
+      "LOW": "LOW"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "generator-jhipster": {
+    "applicationIndex": 0,
+    "applicationType": "monolith",
+    "authenticationType": "jwt",
+    "baseName": "myApp",
+    "clientFramework": "angular",
+    "devServerPort": 4200,
+    "entities": [
+      "UserAttributes",
+      "ApplicationUser",
+      "Country",
+      "District",
+      "State",
+      "City",
+      "Location",
+      "SecurityTest",
+      "TestCheckList",
+      "TestCheckLisItem",
+      "CheckList",
+      "CheckLisItem"
+    ],
+    "jhipsterVersion": "8.2.1",
+    "jwtSecretKey": "MGFjOTEwYTdhOTgxZGQwNjM2ZDhmNzliNTc0YzZjMGFiMWNkMjY5MDk1ZjhlOGNlNTQ0NDZkMDVlODgzYzQ1NGEwOTk0YzJjMWViYjgyYTcxNmEyZGQyNTU4MGJmMWQ3N2ZlYjMzNzNlMjZmZTk4ZDMxODczNmU4YThlYTBjMDQ=",
+    "languages": ["en"],
+    "lastLiquibaseTimestamp": 1715588333000,
+    "nativeLanguage": "en",
+    "packageFolder": "com/secitriy/analyzer",
+    "packageName": "com.secitriy.analyzer",
+    "prodDatabaseType": "postgresql"
+  }
+}

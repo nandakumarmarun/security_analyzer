@@ -1,0 +1,40 @@
+{
+  "annotations": {
+    "changelogDate": "20240513081453"
+  },
+  "applications": ["myApp"],
+  "fields": [
+    {
+      "fieldName": "testStatus",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "testScore",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "securityLevel",
+      "fieldType": "SecurityLevel",
+      "fieldValues": "HIGH,MODERATE,LOW"
+    }
+  ],
+  "name": "SecurityTest",
+  "relationships": [
+    {
+      "otherEntityName": "testCheckList",
+      "otherEntityRelationshipName": "securityTest",
+      "relationshipName": "testCheckList",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "applicationUser",
+      "otherEntityRelationshipName": "securityTest",
+      "relationshipName": "applicationUser",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}
